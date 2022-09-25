@@ -1,0 +1,110 @@
+.zlhy-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  margin: 0 5px 0 0;
+}
+.zlhy-icon-sign {
+  background-image: url('../images//icon/icon_sign.png');
+  background-repeat: no-repeat;
+  background-size: 17px;
+  background-position-x: center;
+  background-position-y: center;
+  background-color: #febd24;
+}
+.zlhy-icon-money {
+  background-image: url('../images//icon/icon_money.png');
+  background-repeat: no-repeat;
+  background-size: 17px;
+  background-position-x: center;
+  background-position-y: center;
+  background-color: #24b7ff;
+}
+.zlhy-icon-recharge {
+  background-image: url('../images//icon/icon_recharge.png');
+  background-repeat: no-repeat;
+  background-size: 17px;
+  background-position-x: center;
+  background-position-y: center;
+  background-color: #fb7464;
+}
+.zlhy-icon-phone {
+  background-image: url('../images//icon/icon_phone.png');
+  background-repeat: no-repeat;
+  background-size: 17px;
+  background-position-x: center;
+  background-position-y: center;
+  background-color: #81d6a9;
+}
+.zlhy-icon-idcard {
+  background-image: url('../images//icon/icon_idcard.png');
+  background-repeat: no-repeat;
+  background-size: 17px;
+  background-position-x: center;
+  background-position-y: center;
+  background-color: #a5a6f1;
+}
+.zlhy-icon-jifen {
+  background-image: url('../images//icon/icon_jf.png');
+  background-repeat: no-repeat;
+  background-size: 17px;
+  background-position-x: center;
+  background-position-y: center;
+  background-color: #2ea2df;
+}
+.zlhy-icon-gift {
+  background-image: url('../images//icon/icon_gift.png');
+  background-repeat: no-repeat;
+  background-size: 17px;
+  background-position-x: center;
+  background-position-y: center;
+  background-color: #d770ad;
+}
+.zlhy-icon-wallet {
+  background-image: url('../images//icon/icon_wallet.png');
+  background-repeat: no-repeat;
+  background-size: 17px;
+  background-position-x: center;
+  background-position-y: center;
+  background-color: #f74c4c;
+}
+.zlhy-icon-bind {
+  background-image: url('../images//icon/icon_bind.png');
+  background-repeat: no-repeat;
+  background-size: 17px;
+  background-position-x: center;
+  background-position-y: center;
+  background-color: #08d83a;
+}
+.zlhy-icon-agreement {
+  background-image: url('../images//icon/icon_agreement.png');
+  background-repeat: no-repeat;
+  background-size: 17px;
+  background-position-x: center;
+  background-position-y: center;
+  background-color: #08d3d8;
+}
+.zlhy-icon-privacy {
+  background-image: url('../images//icon/icon_privacy.png');
+  background-repeat: no-repeat;
+  background-size: 17px;
+  background-position-x: center;
+  background-position-y: center;
+  background-color: #3d9fd4;
+}
+.zlhy-icon-guardianship {
+  background-image: url('../images//icon/icon_guardianship.png');
+  background-repeat: no-repeat;
+  background-size: 17px;
+  background-position-x: center;
+  background-position-y: center;
+  background-color: #80af2e;
+}
+.zlhy-icon-exit {
+  background-image: url('../images//icon/icon_exit.png');
+  background-repeat: no-repeat;
+  background-size: 17px;
+  background-position-x: center;
+  background-position-y: center;
+  background-color: #999999;
+}
