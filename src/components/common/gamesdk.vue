@@ -77,6 +77,9 @@
                 <p v-else>打开支付宝扫码支付</p>
             </div>
         </div>
+        <div class="yindao-popup" v-if="yindao == true" @click="yindao = false">
+            <img src="@/assets/images/yindao.png" alt="">
+        </div>
     </div>
 </template>
 
@@ -103,7 +106,8 @@ export default {
             ruleshow: false,
             coin_show: false,
             pay_codeimg: '',
-            code_type: 1
+            code_type: 1,
+            yindao: false
         }
     },
     computed: {
@@ -190,6 +194,10 @@ export default {
         },
         alipay () {
             this.pay_type_show = false
+            if (navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == "micromessenger") {
+                this.yindao = true
+                return
+            }
             if (isSysName() != 'pc') {
                 this.pay_param.type = 3
                 this.pay_param.client = this.clientType() == 3 ? 3 : this.$route.query.client || 2;
@@ -246,6 +254,10 @@ export default {
                 })
             } else {
                 // 支付宝充平台币
+                if (navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == "micromessenger") {
+                    this.yindao = true
+                    return
+                }
                 this.pay_url = this.$api.article.createCoinOrder(2, {
                     uid: this.getUserInformation.uid,
                     type: 3,

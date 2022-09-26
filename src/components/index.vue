@@ -117,17 +117,6 @@ export default {
         width: 100%;
     }
 }
-.icon-home{ background-image: url('../assets/images/icon/home_icon.png'); background-repeat: no-repeat; background-size: 100% 100%; width: 25px; height: 25px; display: block; margin: 0 auto; }
-/deep/.van-tabbar-item--active .icon-home{background-image: url('../assets/images/icon/home_icon_active.png'); background-repeat: no-repeat; background-size: 100% 100%;}
-
-.icon-gift{ background-image: url('../assets/images/icon/gift_icon.png'); background-repeat: no-repeat; background-size: 100% 100%; width: 25px; height: 25px; display: block; margin: 0 auto; }
-/deep/.van-tabbar-item--active .icon-gift{background-image: url('../assets/images/icon/gift_icon_active.png'); background-repeat: no-repeat; background-size: 100% 100%;}
-
-.icon-shop{ background-image: url('../assets/images/icon/shoping_icon.png'); background-repeat: no-repeat; background-size: 100% 100%; width: 25px; height: 25px; display: block; margin: 0 auto; }
-/deep/.van-tabbar-item--active .icon-shop{background-image: url('../assets/images/icon/shoping_icon_active.png'); background-repeat: no-repeat; background-size: 100% 100%;}
-
-.icon-user{ background-image: url('../assets/images/icon/member_icon.png'); background-repeat: no-repeat; background-size: 100% 100%; width: 25px; height: 25px; display: block; margin: 0 auto; }
-/deep/.van-tabbar-item--active .icon-user{background-image: url('../assets/images/icon/member_icon_active.png'); background-repeat: no-repeat; background-size: 100% 100%;}
 .fa{transform: scale(0.8);}
 /deep/.van-tabbar-item--active{color: #f4a460;}
 /deep/.van-tabbar--fixed{

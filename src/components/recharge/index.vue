@@ -49,6 +49,9 @@
             <p class="tips" @click="onBindPtb">阅读<span>《斩龙互娱平台币规则》</span></p>
         </div>
         <text-ptb data-title="平台币规则" v-if="ptbStatus" @onBindPtb="onBindPtb" />
+        <div class="yindao-popup" v-if="yindao == true" @click="yindao = false">
+            <img src="@/assets/images/yindao.png" alt="">
+        </div>
     </div>
 </template>
 
@@ -73,7 +76,8 @@ export default {
             moneyList: 'list0',
             ptbStatus: false,
             submit: '',
-            getHotGameData: []
+            getHotGameData: [],
+            yindao: false,
         }
     },
     methods: {
@@ -117,12 +121,7 @@ export default {
             }
             if(this.payType == 'alipay') {
                 if (navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == "micromessenger") {
-                    Toast.fail({
-                        message: '点击右上角浏览器打开进行支付宝充值',
-                        forbidClick: true,
-                        loadingType: 'spinner',
-                        duration: 3000
-                    });
+                    this.yindao = true
                 } else {
                     type = 3;
                     location.href = this.$api.article.createCoinOrderUrl({
