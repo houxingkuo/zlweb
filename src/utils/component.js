@@ -91,29 +91,16 @@ export function zhanlongHyRSA (parameterItems){
 
 export function btnslogincheck (state, id) {
     var ua = window.navigator.userAgent.toLowerCase();
-    let backurl = location.href;
-    let loginStore = store.getters.getlogin;
     let cookie = getCookie('ZHANLONGHY_DATA') == null || JSON.stringify(getCookie('ZHANLONGHY_DATA')) == "{}";
     // 领取礼包
     if (cookie) {
         if(ua.match(/MicroMessenger/i) == 'micromessenger'){
             //微信环境下
-            loginStore.status = false;
-            loginStore.type = 'getgift';
-            store.commit('setLogin', loginStore);
-            wx.miniProgram.getEnv(function(res) {
-                location.href = api.article.getWxLoginCode({
-                    type: res.miniprogram ? 2 : 1,
-                    url: backurl,
-                    state: ''
-                })
-            })
+            zhanlongHyWxLogin({to:{fullPath: location.href}})
             return false;
         } else {
             //非微信环境逻辑
-            loginStore.status = true;
-            loginStore.type = 'getgift';
-            store.commit('setLogin', loginStore);
+            router.push({ path: '/login' });
             return false;
         }
     } else {
@@ -150,8 +137,10 @@ export function zhanlongHyLOGIN (data) {
     loginStore.status = false;
     store.commit('setLogin', loginStore);
     setCookie('ZHANLONGHY_DATA', data);
-    if (JSON.stringify(store.getters.getlogin.to) != '{}') {
-        router.push({ path: store.getters.getlogin.to.path });
+    if (loginStore.to.path && loginStore.to.path.indexOf('/login') == -1) {
+        router.push({ path: loginStore.to.path });
+    } else if (loginStore.from.path && loginStore.from.path.indexOf('/login') == -1) {
+        router.push({ path: loginStore.from.path });
     } else {
         router.push({ path: '/' });
     }

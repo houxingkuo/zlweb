@@ -184,6 +184,11 @@ export default {
         }
     },
     created() {
+        let login = this.$store.getters.getlogin;
+        login.to = {path: null};
+        login.from = this.$route;
+        login.type = 'router';
+        this.$store.commit('setLogin', login);
         if (JSON.stringify(this.$route.query) != '{}') {
             this.value = this.$route.query.name
             this.onSearch();

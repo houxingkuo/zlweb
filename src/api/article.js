@@ -15,7 +15,7 @@ const article = {
     login (params) {
         params.tune = store.state.tune;
         params.time = Date.parse(new Date()) / 1000;
-        params.mp = 2;
+        params.mp = 1;
         return axios.post(`/login/userLogin?reqdata=${zhanlongHyRSA(params)}`)
     },
     // 修改
@@ -147,7 +147,7 @@ const article = {
     // 获取微信code
     getWxLoginCode (params) {
         params.time = Date.parse(new Date()) / 1000;
-        params.mp = 2;
+        params.mp = 1;
         return `${process.env.BASE_API}/user/getWxLoginCode?${QS.stringify(params)}`
     },
     // 获取游戏地址

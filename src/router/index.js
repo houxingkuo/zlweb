@@ -231,7 +231,7 @@ router.beforeEach((to, from, next) => {
     // 判断该页面是否需要登陆
     if(to.matched.some(res=>res.meta.requireAuth) && cookie) {
         if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-            zhanlongHyWxLogin()
+            zhanlongHyWxLogin(login)
         } else {
             next({ path: '/login' })
         }
