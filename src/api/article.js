@@ -167,7 +167,7 @@ const article = {
     // 游戏上报
     roleReport (params) {
         params.time = Date.parse(new Date()) / 1000;
-        return axios.get(`/game/getHotGame`, {params:params})
+        return axios.get(`/game/roleReport`, {params:params})
     },
     // 发起订单支付
     createGameOrder (type, params) {
