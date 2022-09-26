@@ -58,7 +58,7 @@
             </li>
         </ul>
         <bind-account data-title="绑定账号" v-if="accountStatus" @onBindAccount="onBindAccount" />
-        <bind-card data-title="实名认证" v-if="idcardStatus" @onBindCard="onBindCard" />
+        <bind-card data-title="实名认证" v-if="idcardStatus" :cardstate="1" @onBindCard="onBindCard" />
         <bind-gift data-title="我的礼包" v-if="giftStatus" @onBindGift="onBindGift" />
     </div>
 </template>
@@ -94,7 +94,7 @@ export default {
             if (this.getUserInformation.mobile) return false
             this.accountStatus = !this.accountStatus
         },
-        onBindCard (status) {
+        onBindCard (data) {
             if (this.getUserInformation.is_auth) return false
             this.idcardStatus = !this.idcardStatus
         },

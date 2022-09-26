@@ -1,5 +1,5 @@
 <template>
-    <van-popup v-model="status" round @click-overlay='onBindCard'>
+    <van-popup v-model="status" :close-on-click-overlay="false" round @click-overlay='onBindCard'>
         <div id="bindCardFixed">
             <h2>实名认证</h2>
             <div class="form">
@@ -31,6 +31,7 @@ Vue.use(Button);
 Vue.use(Toast);
 export default {
     name: 'bindAccount',
+    props: ['cardstate'],
     data () {
         return {
             status: true,
@@ -40,7 +41,7 @@ export default {
     },
     methods: {
         onBindCard() {
-            this.$emit('onBindCard', false)
+            this.$emit('onBindCard', {close: false, state: this.cardstate})
         },
         getIDcardData () {
             let $this = this;
@@ -52,10 +53,13 @@ export default {
             }).then(res=> {
                 Toast('认证成功');
                 // 写入认证成功信息
-                let idcardStatus = $this.$store.getters.getUserInformation;
-                idcardStatus.is_auth = true;
-                // 写入vuex
-                $this.$store.commit('setUserInformation', idcardStatus);
+                if (res.data.data.isAdult == 1) {
+                   let idcardStatus = $this.$store.getters.getUserInformation;
+                    idcardStatus.is_auth = true;
+                    // 写入vuex
+                    $this.$store.commit('setUserInformation', idcardStatus); 
+                }
+                $this.$emit('onBindCard', {close: false, state: res.data.data.isAdult == 1 ? 1 : 2})
             }).catch(err => {
                 console.log(err)
             })

@@ -1,171 +1,173 @@
 <template>
-    <div class="game-ball-page" v-if="getgameinfopage">
-        <!-- 遮罩层 -->
-        <div class="game-overlay" @click="closeGameInfoPage"></div>
-        <div class="game-btns">
-            <div @click="toHome">
-                <label :style="{'background-image': `url(${require('@/assets/images/icon/icon_game.png')}`}"></label>
-                <p>更多游戏</p>
-            </div>
-            <div @click="reloadPage">
-                <label :style="{'background-image': `url(${require('@/assets/images/icon/icon_init.png')}`}"></label>
-                <p>刷新游戏</p>
-            </div>
-            <div @click="toHome">
-                <label :style="{'background-image': `url(${require('@/assets/images/icon/icon_esc.png')}`}"></label>
-                <p>退出游戏</p>
-            </div>
-        </div>
-        <div class="game-tabbar-content">
-            <!-- 用户信息 -->
-            <div class="user-info-warp">
-                <img :src="getUserInformation.avatar" class="userAvatar" alt="用户头像">
-                <div class="info">
-                    <p>{{ getUserInformation.nickname }}</p>
-                    <span>uid:{{ getUserInformation.uid }}</span>
+    <div>
+        <div class="game-ball-page" v-if="getgameinfopage">
+            <!-- 遮罩层 -->
+            <div class="game-overlay" @click="closeGameInfoPage"></div>
+            <div class="game-btns">
+                <div @click="toHome">
+                    <label :style="{'background-image': `url(${require('@/assets/images/icon/icon_game.png')}`}"></label>
+                    <p>更多游戏</p>
                 </div>
-                <div class="switch-account-btn" @click="loginStatus = true">
-                    <img src="@/assets/images/icon/exit.png" alt="切换账号">
-                    <p>切换帐号</p>
+                <div @click="reloadPage">
+                    <label :style="{'background-image': `url(${require('@/assets/images/icon/icon_init.png')}`}"></label>
+                    <p>刷新游戏</p>
+                </div>
+                <div @click="toHome">
+                    <label :style="{'background-image': `url(${require('@/assets/images/icon/icon_esc.png')}`}"></label>
+                    <p>退出游戏</p>
                 </div>
             </div>
-            <!-- 我的 -->
-            <div class="tabbar-user-page" v-if="tabbarIndex == 0">
-                <img src="@/assets/images/icon/hidden.png" alt="收起" class="close-tab-page" @click="tabbarIndex = -1">
-                <div class="user-info">
-                    <img :src="getUserInformation.avatar" alt="用户头像">
-                    <div>
+            <div class="game-tabbar-content">
+                <!-- 用户信息 -->
+                <div class="user-info-warp">
+                    <img :src="getUserInformation.avatar" class="userAvatar" alt="用户头像">
+                    <div class="info">
                         <p>{{ getUserInformation.nickname }}</p>
                         <span>uid:{{ getUserInformation.uid }}</span>
                     </div>
+                    <div class="switch-account-btn" @click="loginStatus = true">
+                        <img src="@/assets/images/icon/exit.png" alt="切换账号">
+                        <p>切换帐号</p>
+                    </div>
                 </div>
-                <ul>
-                    <li>
-                        <img src="@/assets/images/icon/icon_bind_tel.png" alt="">
-                        <p>绑定手机</p>
-                        <span class="on" v-if="getUserInformation.cellphone != ''">已绑定</span>
-                        <span v-else @click="onBindAccount">未绑定</span>
-                    </li>
-                    <li>
-                        <img src="@/assets/images/icon/icon_bind_authe.png" alt="">
-                        <p>实名认证</p>
-                        <span class="on" v-if="getUserInformation.is_auth">已认证</span>
-                        <span v-else @click="onBindCard">未认证</span>
-                    </li>
-                </ul>
-            </div>
-            <!-- 礼包 -->
-            <div class="tabbar-gift-page" v-if="tabbarIndex == 1">
-                <img src="@/assets/images/icon/hidden.png" alt="收起" class="close-tab-page" @click="tabbarIndex = -1">
-                <div class="touch">
-                    <ul v-if="data.gift.ordinary.length != 0">
-                        <li v-for="(item, index) in data.gift.ordinary" :key="item.id" :data-index="index">
-                            <div class="gift-info">
-                                <div class="gift-info-t">
-                                    <img src="@/assets/images/icon/icon_lb.png" class="icon-lb" alt="礼包icon">
-                                    <p class="gift-name">{{ item.name }}</p>
-                                    <img src="@/assets/images/icon/icon_wh.png" class="icon-wh" alt="使用说明icon">
-                                    <span @click="giftDescText = item.method;giftDesc = true">使用说明</span>
-                                </div>
-                                <div class="gift-info-b">
-                                    {{ item.content }}
-                                </div>
-                            </div>
-                            <div class="gift-get">
-                                <button v-if="item.is_receive == 0" @click="getgiftcode(item.is_receive, item.id, index)">领取</button>
-                                <button v-else @click="getgiftcode(item.is_receive, item.code)">查看</button>
-                                <p>剩余:{{ item.surplus_sum }}</p>
-                            </div>
+                <!-- 我的 -->
+                <div class="tabbar-user-page" v-if="tabbarIndex == 0">
+                    <img src="@/assets/images/icon/hidden.png" alt="收起" class="close-tab-page" @click="tabbarIndex = -1">
+                    <div class="user-info">
+                        <img :src="getUserInformation.avatar" alt="用户头像">
+                        <div>
+                            <p>{{ getUserInformation.nickname }}</p>
+                            <span>uid:{{ getUserInformation.uid }}</span>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>
+                            <img src="@/assets/images/icon/icon_bind_tel.png" alt="">
+                            <p>绑定手机</p>
+                            <span class="on" v-if="getUserInformation.cellphone != ''">已绑定</span>
+                            <span v-else @click="onBindAccount">未绑定</span>
+                        </li>
+                        <li>
+                            <img src="@/assets/images/icon/icon_bind_authe.png" alt="">
+                            <p>实名认证</p>
+                            <span class="on" v-if="getUserInformation.is_auth">已认证</span>
+                            <span v-else @click="idcardStatus = true">未认证</span>
                         </li>
                     </ul>
-                    <img src="@/assets/images/icon/no-information.png" alt="" style="width: 40%;" v-else>
+                </div>
+                <!-- 礼包 -->
+                <div class="tabbar-gift-page" v-if="tabbarIndex == 1">
+                    <img src="@/assets/images/icon/hidden.png" alt="收起" class="close-tab-page" @click="tabbarIndex = -1">
+                    <div class="touch">
+                        <ul v-if="data.gift.ordinary.length != 0">
+                            <li v-for="(item, index) in data.gift.ordinary" :key="item.id" :data-index="index">
+                                <div class="gift-info">
+                                    <div class="gift-info-t">
+                                        <img src="@/assets/images/icon/icon_lb.png" class="icon-lb" alt="礼包icon">
+                                        <p class="gift-name">{{ item.name }}</p>
+                                        <img src="@/assets/images/icon/icon_wh.png" class="icon-wh" alt="使用说明icon">
+                                        <span @click="giftDescText = item.method;giftDesc = true">使用说明</span>
+                                    </div>
+                                    <div class="gift-info-b">
+                                        {{ item.content }}
+                                    </div>
+                                </div>
+                                <div class="gift-get">
+                                    <button v-if="item.is_receive == 0" @click="getgiftcode(item.is_receive, item.id, index)">领取</button>
+                                    <button v-else @click="getgiftcode(item.is_receive, item.code)">查看</button>
+                                    <p>剩余:{{ item.surplus_sum }}</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <img src="@/assets/images/icon/no-information.png" alt="" style="width: 40%;" v-else>
+                    </div>
+                </div>
+                <!-- 消息 -->
+                <div class="tabbar-msg-page" v-else-if="tabbarIndex == 2">
+                    <img src="@/assets/images/icon/hidden.png" alt="收起" class="close-tab-page" @click="tabbarIndex = -1">
+                    <h3>我的消息</h3>
+                    <div class="touch">
+                        <ul v-if="data.msg.list.length != 0">
+                            <li v-for="(item, index) in data.msg.list" :key="index">
+                                <label>{{ item.title }}</label>
+                                <div v-html="item.content"></div>
+                            </li>
+                        </ul>
+                        <img src="@/assets/images/icon/no-information.png" alt="" style="width: 40%;" v-else>
+                    </div>
+                </div>
+                <!-- 资讯 -->
+                <div class="tabbar-logs-page" v-else-if="tabbarIndex == 3">
+                    <img src="@/assets/images/icon/hidden.png" alt="收起" class="close-tab-page" @click="tabbarIndex = -1">
+                    <van-tabs v-model="active">
+                        <van-tab title="公告">
+                            <div class="touch" v-if="data.information.notice.length != 0">
+                                <div v-for="(item, index) in data.information.notice" :key="index" @click="logsFunc(item.id)">
+                                    <label>{{ item.content }}</label>
+                                    <p>{{ item.time }}</p>
+                                </div>
+                            </div>
+                            <img src="@/assets/images/icon/no-information.png" alt="" style="width: 40%;" v-else>
+                        </van-tab>
+                        <van-tab title="活动">
+                            <div class="touch" v-if="data.information.activity.length != 0">
+                                <div v-for="(item, index) in data.information.activity" :key="index" @click="logsFunc(item.id)">
+                                    <label>{{ item.content }}</label>
+                                    <p>{{ item.time }}</p>
+                                </div>
+                            </div>
+                            <img src="@/assets/images/icon/no-information.png" alt="" style="width: 40%;" v-else>
+                        </van-tab>
+                        <van-tab title="攻略">
+                            <div class="touch" v-if="data.information.strategy.length != 0">
+                                <div v-for="(item, index) in data.information.strategy" :key="index" @click="logsFunc(item.id)">
+                                    <label>{{ item.content }}</label>
+                                    <p>{{ item.time }}</p>
+                                </div>
+                            </div>
+                            <img src="@/assets/images/icon/no-information.png" alt="" style="width: 40%;" v-else>
+                        </van-tab>
+                    </van-tabs>
+                </div>
+                <!-- 客服 -->
+                <div class="tabbar-server-page" v-else-if="tabbarIndex == 4">
+                    <img src="@/assets/images/icon/hidden.png" alt="收起" class="close-tab-page" @click="tabbarIndex = -1">
+                    <img src="@/assets/images/wx_kf.png" alt="" class="kf">
+                    <p>使用微信扫一扫<br>或长按识别联系客服</p>
+                </div>
+                <!-- 资讯内容 -->
+                <div class="logs-content" v-if="logs.title != ''">
+                    <van-nav-bar
+                    :title="logs.title"
+                    left-text="返回"
+                    left-arrow
+                    @click-left="onClickLeft"
+                    />
+                    <div class="touch">
+                        <div v-html="logs.content"></div>
+                    </div>
                 </div>
             </div>
-            <!-- 消息 -->
-            <div class="tabbar-msg-page" v-else-if="tabbarIndex == 2">
-                <img src="@/assets/images/icon/hidden.png" alt="收起" class="close-tab-page" @click="tabbarIndex = -1">
-                <h3>我的消息</h3>
-                <div class="touch">
-                    <ul v-if="data.msg.list.length != 0">
-                        <li v-for="(item, index) in data.msg.list" :key="index">
-                            <label>{{ item.title }}</label>
-                            <div v-html="item.content"></div>
-                        </li>
-                    </ul>
-                    <img src="@/assets/images/icon/no-information.png" alt="" style="width: 40%;" v-else>
+            <div class="game-tabbar">
+                <div :class="{'tabbar-item': true, 'on': tabbarIndex == index}" data-tab="user" v-for="(item, index) in tabItem" :key="index" @click="tabbarIndex = index">
+                    <img class="icon" :src="item.icon" alt="">
+                    <p class="text">{{ item.name }}</p>
                 </div>
             </div>
-            <!-- 资讯 -->
-            <div class="tabbar-logs-page" v-else-if="tabbarIndex == 3">
-                <img src="@/assets/images/icon/hidden.png" alt="收起" class="close-tab-page" @click="tabbarIndex = -1">
-                <van-tabs v-model="active">
-                    <van-tab title="公告">
-                        <div class="touch" v-if="data.information.notice.length != 0">
-                            <div v-for="(item, index) in data.information.notice" :key="index" @click="logsFunc(item.id)">
-                                <label>{{ item.content }}</label>
-                                <p>{{ item.time }}</p>
-                            </div>
-                        </div>
-                        <img src="@/assets/images/icon/no-information.png" alt="" style="width: 40%;" v-else>
-                    </van-tab>
-                    <van-tab title="活动">
-                        <div class="touch" v-if="data.information.activity.length != 0">
-                            <div v-for="(item, index) in data.information.activity" :key="index" @click="logsFunc(item.id)">
-                                <label>{{ item.content }}</label>
-                                <p>{{ item.time }}</p>
-                            </div>
-                        </div>
-                        <img src="@/assets/images/icon/no-information.png" alt="" style="width: 40%;" v-else>
-                    </van-tab>
-                    <van-tab title="攻略">
-                        <div class="touch" v-if="data.information.strategy.length != 0">
-                            <div v-for="(item, index) in data.information.strategy" :key="index" @click="logsFunc(item.id)">
-                                <label>{{ item.content }}</label>
-                                <p>{{ item.time }}</p>
-                            </div>
-                        </div>
-                        <img src="@/assets/images/icon/no-information.png" alt="" style="width: 40%;" v-else>
-                    </van-tab>
-                </van-tabs>
-            </div>
-            <!-- 客服 -->
-            <div class="tabbar-server-page" v-else-if="tabbarIndex == 4">
-                <img src="@/assets/images/icon/hidden.png" alt="收起" class="close-tab-page" @click="tabbarIndex = -1">
-                <img src="@/assets/images/wx_kf.png" alt="" class="kf">
-                <p>使用微信扫一扫<br>或长按识别联系客服</p>
-            </div>
-            <!-- 资讯内容 -->
-            <div class="logs-content" v-if="logs.title != ''">
-                <van-nav-bar
-                :title="logs.title"
-                left-text="返回"
-                left-arrow
-                @click-left="onClickLeft"
-                />
-                <div class="touch">
-                    <div v-html="logs.content"></div>
-                </div>
-            </div>
-        </div>
-        <div class="game-tabbar">
-            <div :class="{'tabbar-item': true, 'on': tabbarIndex == index}" data-tab="user" v-for="(item, index) in tabItem" :key="index" @click="tabbarIndex = index">
-                <img class="icon" :src="item.icon" alt="">
-                <p class="text">{{ item.name }}</p>
-            </div>
+            <van-popup v-model="giftDesc" round class="showPanelFixed">
+                <h3>礼包使用说明</h3>
+                <div class="text" v-html="giftDescText"></div>
+            </van-popup>
+            <van-popup v-model="giftcodestate" round class="showCodeFixed">
+                <h3 v-if="giftcode.state == 0">领取成功</h3>
+                <h3 v-else>查看礼包</h3>
+                <div class="text">券码：{{ giftcode.code }}</div>
+                <button @click="giftcodestate = false">知道了</button>
+            </van-popup>
         </div>
         <bind-account data-title="绑定账号" v-if="accountStatus" @onBindAccount="onBindAccount" />
-        <bind-card data-title="实名认证" v-if="idcardStatus" @onBindCard="onBindCard" />
+        <bind-card data-title="实名认证" v-if="idcardStatus" :cardstate="0" @onBindCard="onBindCard" />
         <bind-login data-title="切换账号" v-if="loginStatus" @onBindLogin="onBindLogin" />
-        <van-popup v-model="giftDesc" round class="showPanelFixed">
-            <h3>礼包使用说明</h3>
-            <div class="text" v-html="giftDescText"></div>
-        </van-popup>
-        <van-popup v-model="giftcodestate" round class="showCodeFixed">
-            <h3 v-if="giftcode.state == 0">领取成功</h3>
-            <h3 v-else>查看礼包</h3>
-            <div class="text">券码：{{ giftcode.code }}</div>
-            <button @click="giftcodestate = false">知道了</button>
-        </van-popup>
     </div>
 </template>
 
@@ -256,8 +258,12 @@ export default {
         onBindAccount () {
             this.accountStatus = !this.accountStatus
         },
-        onBindCard () {
-            this.idcardStatus = !this.idcardStatus
+        onBindCard (data) {
+            if (data.state == 1) {
+                this.idcardStatus = false
+            } else if (data.state == 2) {
+                location.href = this.data.user.real_url
+            }
         },
         closeGameInfoPage () {
             if (this.tabbarIndex == -1) {
@@ -300,6 +306,11 @@ export default {
             }).then(res=> {
                 console.log('1', res)
                 this.data = res.data.data
+                if (!res.data.data.user.idcard_status) {
+                    this.idcardStatus = true
+                } else if (!res.data.data.user.idcard_adult) {
+                    location.href = res.data.data.user.real_url
+                }
             }).catch(err => {
                 console.log(err)
             })
