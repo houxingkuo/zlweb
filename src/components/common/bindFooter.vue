@@ -33,6 +33,6 @@ export default {
     text-align: center;
     a{display: flex;align-items: center;justify-content: center;color: #333;}
     img,span{vertical-align: middle;}
-    span{color: blue;text-decoration: underline;}
+    span{color: #999;}
 }
 </style>
