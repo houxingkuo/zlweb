@@ -18,6 +18,13 @@
             <div class="introduce" v-if="pageData.publicity != ''">
                 <label class="titlesMol">游戏简介</label>
                 <p v-html="pageData.publicity"></p>
+                <div class="touch">
+                    <ul :style="{'width': `${135*pageData.brief_img.length}px`}">
+                        <li v-for="(item, index) in pageData.brief_img" :key="index">
+                            <img :src="item" alt="" style="width:125px;margin: 0 10px 0 0;">
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="giftBox" v-if="pageData.gift !== undefined && pageData.gift.length > 0">
                 <label class="titlesMol" style="margin-top: 20px;">游戏礼包</label>
@@ -34,14 +41,6 @@
                         <a href="javascript:void(0);" target="_self" class="getGift" v-if="item.surplus_sum == 0 && item.is_receive == 0">已完</a>
                         <a href="javascript:void(0);" target="_self" class="getGift" @click="getCode(item.id, index, pageData.id)" v-else-if="item.is_receive == 0">领取</a>
                         <a href="javascript:void(0);" target="_self" class="getGift" @click="lockCode(item.code, item.id)" v-else>查看</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="introduce" v-if="pageData.brief_img != undefined && pageData.brief_img.length != 0">
-                <label class="titlesMol" style="margin-top: 20px;">介绍图</label>
-                <ul>
-                    <li v-for="(item, index) in pageData.brief_img" :key="index">
-                        <img :src="item" alt="" width="100%">
                     </li>
                 </ul>
             </div>
