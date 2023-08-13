@@ -6,7 +6,7 @@
 ## Build Setup
 
 ``` bash
-# install dependencies
+# install dependencies   测试vscode git
 npm install
 
 # serve with hot reload at localhost:8080
